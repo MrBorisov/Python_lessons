@@ -13,3 +13,4 @@ while True:
     finish = input('Для завершения введите q: ')
     if finish == 'q':
         break
+        
