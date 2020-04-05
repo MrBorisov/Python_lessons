@@ -16,5 +16,6 @@ for i in goods:
     list_of_price.append(i[1].get('Цена'))
     list_of_count.append(i[1].get('Количество'))
     list_of_size.append(i[1].get('Ед'))
+    list_of_size = list(set(list_of_size))
 analytics.update({"Название": list_of_names, "Цена": list_of_price, "Количество": list_of_count, "Ед": list_of_size})
 print(analytics)
