@@ -18,9 +18,9 @@ for el in count(0, 3):
     else:
         my_list.append(el)
 
-с = 0
+i = 0
 for el in cycle(my_list):
-    if с >= 33:
+    if i >= 33:
         break
     print(el)
-    с += 1
+    i += 1
