@@ -12,3 +12,9 @@ def my_func(prev_el, el):
 
 
 print(reduce(my_func, range(98, 1001, 2)))
+
+#--------------------2---------------- в одну строку
+
+from functools import reduce
+
+print(reduce((lambda a,b: a * b, [x for x in range(100, 1001, 2)])))
