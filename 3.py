@@ -19,11 +19,10 @@ def average_salary(list_of_workers):
 
 list_of_workers = []
 try:
-    with open(r"D:\CloudStation\GeekBrains\31.03.2020\Python_lessons\text_3.txt", encoding='utf-8') as file:
+    with open("text_3.txt", encoding='utf-8') as file:
         for line in file:
             date = line.split()
             list_of_workers.append(date)
-        print(list_of_workers)
 except IOError:
     print("Произошла ошибка ввода-вывода!")
 

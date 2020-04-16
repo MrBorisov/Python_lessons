@@ -1,5 +1,5 @@
 lessons = {}
-with open(r"D:\CloudStation\GeekBrains\31.03.2020\Python_lessons\text_6.txt", encoding='utf-8') as file:
+with open("text_6.txt", encoding='utf-8') as file:
     data = file.read()
 
     """

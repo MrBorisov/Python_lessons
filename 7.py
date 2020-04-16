@@ -3,7 +3,7 @@ import json
 avrage = {}
 firms = {}
 sum = 0
-with open(r"D:\CloudStation\GeekBrains\31.03.2020\Python_lessons\text_7.txt", encoding='utf-8') as file:
+with open("text_7.txt", encoding='utf-8') as file:
     """счетчик фирм с прибылью"""
     i = 0
     for line in file:
@@ -22,5 +22,5 @@ mylist.append(firms)
 mylist.append(avrage)
 print(mylist)
 
-with open(r"D:\CloudStation\GeekBrains\31.03.2020\Python_lessons\my_file.json", "w") as write_f:
+with open("my_file.json", "w") as write_f:
     json.dump(mylist, write_f, indent=4, ensure_ascii=False)

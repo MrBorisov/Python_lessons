@@ -1,5 +1,5 @@
 try:
-    with open(r"D:\CloudStation\GeekBrains\31.03.2020\Python_lessons\task_2.txt") as file:
+    with open("task_2.txt") as file:
         num_of_str = 0
         num_of_words = 0
         for line in file:
