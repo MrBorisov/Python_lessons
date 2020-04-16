@@ -1,11 +1,3 @@
-"""Создать (не программно) текстовый файл со следующим содержимым:
-One — 1
-Two — 2
-Three — 3
-Four — 4
-Необходимо написать программу, открывающую файл на чтение и считывающую построчно данные. При этом английские
-числительные должны заменяться на русские. Новый блок строк должен записываться в новый текстовый файл.
-"""
 from googletrans import Translator
 
 
@@ -19,12 +11,13 @@ def translate(word: str):
     result = translator.translate(word, src='en', dest='ru')
     return (result.text)
 
-def output_date(list):
-    with open(r"D:\CloudStation\GeekBrains\31.03.2020\Python_lessons\output_date.txt", "w") as file:
 
+def output_date(list):
+    with open(r"D:\CloudStation\GeekBrains\31.03.2020\Python_lessons\output_date.txt", "w", encoding='utf-8') as file:
         for el in list:
             trans_word = translate(el[0])
             file.write(trans_word.title() + ' — ' + el[1] + '\n')
+
 
 list_of_words = []
 try:

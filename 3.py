@@ -1,19 +1,20 @@
-"""Определить, кто из сотрудников имеет оклад менее 20 тыс., вывести фамилии этих сотрудников.
-Выполнить подсчет средней величины дохода сотрудников.
-"""
-
-
 def min_salary(list_of_workers):
     for worker in list_of_workers:
-        if float(worker[1]) < 20000:
-            print(f'{worker[0]} получает меньше 20000 рублей его зп = {worker[1]}')
+        try:
+            if float(worker[1]) < 20000:
+                print(f'{worker[0]} получает меньше 20000 рублей его зп = {worker[1]}')
+        except ValueError:
+            print('Некорректные данные')
 
 
 def average_salary(list_of_workers):
-    sum = 0
+    sum_salary = 0
     for worker in list_of_workers:
-        sum += float(worker[1])
-    return sum / len(list_of_workers)
+        try:
+            sum_salary += float(worker[1])
+        except ValueError:
+            print('Некорректные данные')
+    return sum_salary / len(list_of_workers)
 
 
 list_of_workers = []
