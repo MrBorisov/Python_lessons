@@ -5,7 +5,6 @@ lessons = {}
 """
 with open("text_6.txt", encoding='utf-8') as file:
     for line in file:
-
         index_start = 0
         index_line = len(line)
         sum_of_hour = 0
@@ -23,5 +22,4 @@ with open("text_6.txt", encoding='utf-8') as file:
                 else:
                     lessons[ls] = sum_of_hour
                     break
-
 print(lessons)
