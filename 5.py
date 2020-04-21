@@ -32,6 +32,7 @@ class Handle(Stationery):
     def draw(self):
         print('Маркером дети пишут в лифте :-)')
 
+
 p = Pen('Синяя гелевая ручка')
 pn = Pencil('Черный карандашь BB')
 m = Handle('Черный маркер')
