@@ -5,7 +5,6 @@ class Cell:
     def __add__(self, other):
         return self.count + other.count
 
-
     def __sub__(self, other):
         if self.count - other.count > 0:
             return self.count - other.count
