@@ -14,8 +14,10 @@ class Cell:
         return self.count * other.count
 
     def __truediv__(self, other):
-        # TODO Zerosized
-        return self.count // other.count
+        try:
+            return self.count // other.count
+        except ZeroDivisionError:
+            return 'Деление на ноль'
 
     def make_order(self, cell_in_row):
         res_str = ''
