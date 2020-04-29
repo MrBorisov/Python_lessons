@@ -18,8 +18,7 @@ class Data:
             return ('Invalid date!')
 
 
-"""d = Data()
+d = Data()
 print(Data.conversion('1-12-13'))
 print(d.conversion('1-13-20'))
 print(d.conversion('31-12-85'))
-"""
