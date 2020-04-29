@@ -56,17 +56,22 @@ class Store:
                         print(Store.recept_add_tech(tech_input, count_of_tech))
                         break
                     else:
-                        print('вы ввели не допустимое значение')
+                        print('вы ввели недопустимое значение')
                         count_of_tech = input('Сколько техники вы принесли? ')
             elif int(operation) == 2:
                 print(store_1.count_tech)
                 print(store_1.tech)
                 tech_inv = int(input('Введи инвентарный номер устройства: '))
                 department = input('Введите код отдела 1 - IT, 2 - FIN:\n')
-                if department == '1':
-                    department = 'IT'
-                else:
-                    department = 'FIN'
+                while True:
+                    if department == '1':
+                        department = 'IT'
+                        break
+                    elif department == '2':
+                        department = 'FIN'
+                        break
+                    else:
+                        department = input('Вы ввели недопустимое значение. Введите код отдела 1 - IT, 2 - FIN:\n')
                 store_1.transfer(tech_inv, department)
                 print(store_1)
             elif int(operation) == 4:
