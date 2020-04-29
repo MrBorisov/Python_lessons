@@ -1,3 +1,6 @@
+from my_validator import validator
+
+
 class Store:
     def __init__(self, name):
         self.name = name
@@ -5,20 +8,26 @@ class Store:
         self.tech = {}
         self.inv_num = 100
 
+    def __str__(self):
+        return f'На складе {self.count_tech} \n{self.tech}'
+
     def add_tech(self, obj_of_tech):
         """
         Записываем в словарь self.tech значения объекта техники: тип, марка, модель, дата покупки.
         """
         count = self.count_tech[obj_of_tech.type]
         self.count_tech[obj_of_tech.type] = count + 1
-        self.tech[self.inv_num] = [obj_of_tech.type, obj_of_tech.mark, obj_of_tech.model, obj_of_tech.date]
+        self.tech[self.inv_num] = [obj_of_tech.type, obj_of_tech.mark, obj_of_tech.model, obj_of_tech.date, self.name]
         self.inv_num += 1
         return self.name
 
-    def transfer(self, tech_inv):
-        tech_info = self.tech.pop(tech_inv)
+    def transfer(self, tech_inv, department):
+        tech_info = self.tech[tech_inv]
         count = self.count_tech[tech_info[0]]
         self.count_tech[tech_info[0]] = count - 1
+        tech_info = tech_info[:-1]
+        tech_info.append(department)
+        self.tech.update({tech_inv: tech_info})
         print('Техника перенесена')
         return
 
@@ -42,18 +51,27 @@ class Store:
                 elif int(tech_input) == 4:
                     is_stop = False
                 count_of_tech = input('Сколько техники вы принесли? ')
-                print(Store.recept_add_tech(tech_input, count_of_tech))
+                while True:
+                    if count_of_tech.isdigit():
+                        print(Store.recept_add_tech(tech_input, count_of_tech))
+                        break
+                    else:
+                        print('вы ввели не допустимое значение')
+                        count_of_tech = input('Сколько техники вы принесли? ')
             elif int(operation) == 2:
                 print(store_1.count_tech)
                 print(store_1.tech)
                 tech_inv = int(input('Введи инвентарный номер устройства: '))
-                store_1.transfer(tech_inv)
-                print(f'На складе {store_1.tech}')
-                print(f'количество техники на складе {store_1.count_tech}')
+                department = input('Введите код отдела 1 - IT, 2 - FIN:\n')
+                if department == '1':
+                    department = 'IT'
+                else:
+                    department = 'FIN'
+                store_1.transfer(tech_inv, department)
+                print(store_1)
             elif int(operation) == 4:
                 is_stop = False
-                print(f'на складе {store_1.count_tech}')
-                print(f'на складе {store_1.tech}')
+                print(store_1)
 
     @classmethod
     def recept_add_tech(cls, type, count):
@@ -61,7 +79,15 @@ class Store:
             print(f'Добавим {type}: ')
             mark = input(f'введите производителя {type}а:\n')
             model = input(f'введите модель {type}а:\n')
-            date = input('введите дату покупки:\n')
+            date = input('введите дату покупки в формате d-m-y:\n')
+            while True:
+                date = validator(date)
+                if date == False:
+                    print('Выввели не правильную дату')
+                    date = input('введите дату покупки в формате d-m-y:\n')
+                else:
+                    break
+
             if type == 'printer':
                 tech = Printer('printer', mark, model, date, store_1)
             elif type == 'scanner':
@@ -69,26 +95,6 @@ class Store:
             elif type == 'copier':
                 tech = Copier('copier', mark, model, date, store_1)
         return 'Техника добавлена'
-
-
-class Department(Store):
-    def transfer(self, tech_inv, store_obj):
-        """
-        tech_info список с данными о технике из словаря self.tech, содержит: тип, марка, модель, дата покупки
-        """
-        tech_info = store_obj.tech.pop[tech_inv]
-        count = store_obj.count_tech[tech_info[0]]
-        store_obj.count_tech[tech_info[0]] = count - 1
-
-        if tech_info[0] == 'printer':
-            tech = Printer('printer', tech_info[1], tech_info[2], tech_info[3], self)
-        elif tech_info[0] == 'scanner':
-            tech = Scanner('scanner', tech_info[1], tech_info[2], tech_info[3], self)
-        elif tech_info[0] == 'copier':
-            tech = Copier('copier', tech_info[1], tech_info[2], tech_info[3], self)
-
-    def add_tech(self, obj_of_tech):
-        pass
 
 
 class OrgTech:
@@ -115,9 +121,3 @@ class Copier(OrgTech):
 
 store_1 = Store('Main Store')
 Store.recept()
-
-
-
-
-
-
